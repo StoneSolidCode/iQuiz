@@ -115,8 +115,8 @@
                                     <action selector="btnSubmit:" destination="uUr-Cp-v3i" eventType="touchUpInside" id="ssH-e6-su2"/>
                                 </connections>
                             </button>
-                            <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="OFl-F0-TBx">
-                                <rect key="frame" x="153" y="96.5" width="69" height="474"/>
+                            <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="OFl-F0-TBx">
+                                <rect key="frame" x="153" y="150.5" width="69" height="366"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSv-MI-hO0">
                                         <rect key="frame" x="0.0" y="0.0" width="69" height="30"/>
@@ -128,7 +128,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRi-f3-WYv">
-                                        <rect key="frame" x="0.0" y="111" width="69" height="30"/>
+                                        <rect key="frame" x="0.0" y="84" width="69" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="A1T-KG-HAs"/>
                                         </constraints>
@@ -138,7 +138,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iA-ek-vhE">
-                                        <rect key="frame" x="0.0" y="222" width="69" height="30"/>
+                                        <rect key="frame" x="0.0" y="168" width="69" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="EfJ-a4-eqA"/>
                                         </constraints>
@@ -148,7 +148,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHT-tW-iFO">
-                                        <rect key="frame" x="0.0" y="333" width="69" height="30"/>
+                                        <rect key="frame" x="0.0" y="252" width="69" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="vRZ-1Z-YQf"/>
                                         </constraints>
@@ -158,7 +158,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohc-li-ZjN">
-                                        <rect key="frame" x="0.0" y="444" width="69" height="30"/>
+                                        <rect key="frame" x="0.0" y="336" width="69" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="tQA-jl-K8g"/>
                                         </constraints>
@@ -172,6 +172,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JfK-Sz-vkG" firstAttribute="bottom" secondItem="OFl-F0-TBx" secondAttribute="bottom" priority="901" constant="70" id="8Nb-oM-06I"/>
                             <constraint firstItem="JfK-Sz-vkG" firstAttribute="bottom" secondItem="fjb-0C-jZD" secondAttribute="bottom" constant="35" id="JQV-M8-cU0"/>
                             <constraint firstItem="OFl-F0-TBx" firstAttribute="top" secondItem="JfK-Sz-vkG" secondAttribute="top" priority="900" constant="70" id="YnD-2a-paB"/>
                             <constraint firstItem="JfK-Sz-vkG" firstAttribute="trailing" secondItem="fjb-0C-jZD" secondAttribute="trailing" constant="35" id="dg8-A7-nPI"/>
