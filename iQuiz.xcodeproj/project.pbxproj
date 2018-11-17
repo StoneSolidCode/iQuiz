@@ -17,9 +17,11 @@
 		9DC6B90021814B7C0016769F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6B8FE21814B7C0016769F /* Main.storyboard */; };
 		9DC6B90221814B7E0016769F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6B90121814B7E0016769F /* Assets.xcassets */; };
 		9DC6B90521814B7E0016769F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6B90321814B7E0016769F /* LaunchScreen.storyboard */; };
+		F2DA1BE721708D1272D14432 /* Pods_iQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED382D2CF42AC692F22630F /* Pods_iQuiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BDD46D68E14B2263F393F54 /* Pods-iQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iQuiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iQuiz/Pods-iQuiz.debug.xcconfig"; sourceTree = "<group>"; };
 		9D120AF52187F66B00A7BD7E /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
 		9D120AF72187F93700A7BD7E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		9D120AF92187FAFC00A7BD7E /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		9DC6B90121814B7E0016769F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DC6B90421814B7E0016769F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DC6B90621814B7E0016769F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6BC8917E5F04C61610D23CE /* Pods-iQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iQuiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-iQuiz/Pods-iQuiz.release.xcconfig"; sourceTree = "<group>"; };
+		AED382D2CF42AC692F22630F /* Pods_iQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DA1BE721708D1272D14432 /* Pods_iQuiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39419A46880A2748BE448BB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AED382D2CF42AC692F22630F /* Pods_iQuiz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9DC6B8EE21814B7C0016769F = {
 			isa = PBXGroup;
 			children = (
 				9DC6B8F921814B7C0016769F /* tableView */,
 				9DC6B8F821814B7C0016769F /* Products */,
+				AAFFF9AE5B07B67C5D466C63 /* Pods */,
+				39419A46880A2748BE448BB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +94,15 @@
 			path = tableView;
 			sourceTree = "<group>";
 		};
+		AAFFF9AE5B07B67C5D466C63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3BDD46D68E14B2263F393F54 /* Pods-iQuiz.debug.xcconfig */,
+				A6BC8917E5F04C61610D23CE /* Pods-iQuiz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9DC6B90921814B7E0016769F /* Build configuration list for PBXNativeTarget "iQuiz" */;
 			buildPhases = (
+				AC8AAB3F61FD546A5D17DEEA /* [CP] Check Pods Manifest.lock */,
 				9DC6B8F321814B7C0016769F /* Sources */,
 				9DC6B8F421814B7C0016769F /* Frameworks */,
 				9DC6B8F521814B7C0016769F /* Resources */,
+				003B9783527BCC59942DA2CD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,6 +170,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		003B9783527BCC59942DA2CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iQuiz/Pods-iQuiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iQuiz/Pods-iQuiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC8AAB3F61FD546A5D17DEEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iQuiz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9DC6B8F321814B7C0016769F /* Sources */ = {
@@ -300,6 +373,7 @@
 		};
 		9DC6B90A21814B7E0016769F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDD46D68E14B2263F393F54 /* Pods-iQuiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -318,6 +392,7 @@
 		};
 		9DC6B90B21814B7E0016769F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6BC8917E5F04C61610D23CE /* Pods-iQuiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
