@@ -10,6 +10,24 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="Pob-pH-OXt">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5j-cd-ooz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="dx8-6z-K0A" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oFp-lk-c6N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5oL-f2-mc2"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="initial" id="pzh-BY-Ai8"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-609" y="132"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
@@ -316,8 +334,7 @@
         <image name="qmark" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dea-3O-3cn"/>
-        <segue reference="lBM-zJ-WcZ"/>
-        <segue reference="QxY-wK-kea"/>
+        <segue reference="2bd-H0-dWJ"/>
+        <segue reference="pzh-BY-Ai8"/>
     </inferredMetricsTieBreakers>
 </document>

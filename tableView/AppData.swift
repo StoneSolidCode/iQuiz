@@ -30,9 +30,9 @@ class AppData: NSObject {
     open var redAnswers: [String] = ["The internet's greatest information source", "The center of cyberspace", "The front page of the internet", "News, debate, and memes", "r/AskReddit", "r/Funny", "r/ProgrammorHumor", "r/gifs"]
     open var vidAnswers: [String] = ["CrossFire", "Fortnite", "Runescape", "Dungeon Fighter Online", "Mario", "Call of Duty", "Pokemon", "Pac-Man"]
     
-    public let categories = ["Movies", "Reddit", "Video Games"]
-    public let descriptions = ["Old classics, new hits, test your movie knoledge!", "The front page of the internet. Test your knoledge on Reddit lore!", "Nerd out over videogames from all genres!"]
-    public let images = [UIImage(named: "film"), UIImage(named: "reddit"), UIImage(named: "game")]
+    public var categories = ["Movies", "Reddit", "Video Games"]
+    public var descriptions = ["Old classics, new hits, test your movie knoledge!", "The front page of the internet. Test your knoledge on Reddit lore!", "Nerd out over videogames from all genres!"]
+    public var images = [UIImage(named: "film"), UIImage(named: "reddit"), UIImage(named: "game")]
     
     
     
