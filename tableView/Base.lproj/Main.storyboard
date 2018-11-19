@@ -12,7 +12,6 @@
         <!--View Controller-->
         <scene sceneID="Pob-pH-OXt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O5j-cd-ooz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dx8-6z-K0A" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oFp-lk-c6N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -24,6 +23,7 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="initial" id="pzh-BY-Ai8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5j-cd-ooz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-609" y="132"/>
         </scene>
@@ -334,7 +334,7 @@
         <image name="qmark" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2bd-H0-dWJ"/>
-        <segue reference="pzh-BY-Ai8"/>
+        <segue reference="lBM-zJ-WcZ"/>
+        <segue reference="DLf-Yb-geL"/>
     </inferredMetricsTieBreakers>
 </document>

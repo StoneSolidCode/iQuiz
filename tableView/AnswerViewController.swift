@@ -47,7 +47,14 @@ class AnswerViewController: UIViewController {
         default:
             lblQuestion.text = "The program messed up! Don't blame the coder"
         }
-        lblAnswer.text = appdata.correctAns[appdata.questionIdx + appdata.topicIdx * 2]
+        if appdata.topicIdx == 0 {
+            lblAnswer.text = appdata.correctAns[appdata.questionIdx]
+        } else if appdata.topicIdx == 1 {
+            lblAnswer.text = appdata.correctAns[appdata.movQuestions.count + appdata.questionIdx]
+        } else if appdata.topicIdx == 2 {
+            lblAnswer.text = appdata.correctAns[appdata.movQuestions.count + appdata.redQuestions.count + appdata.questionIdx]
+        }
+        //lblAnswer.text = appdata.correctAns[appdata.questionIdx + appdata.topicIdx * 2]
         if appdata.prevCorrect {
             lblResult.text = "You were correct!"
         } else {

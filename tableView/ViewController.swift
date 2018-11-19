@@ -31,6 +31,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         appdata.topicIdx = row
+        if row == 0 {
+            self.appdata.quizLength = appdata.movQuestions.count
+        } else if row == 1 {
+            self.appdata.quizLength = appdata.redQuestions.count
+        } else if row == 2 {
+            self.appdata.quizLength = appdata.vidQuestions.count
+        }
         self.performSegue(withIdentifier: "toQuestion", sender: self)
     }
     
@@ -73,6 +80,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 return
             }
             print(value)
+            self.appdata.correctAns = []
             for quiz in 0...2 {
                 self.appdata.categories[quiz] = value[quiz]["title"] as! String
                 self.appdata.descriptions[quiz] = value[quiz]["desc"] as! String
@@ -82,6 +90,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let quizJson = value[0]
                     self.appdata.quizLength = (quizJson["questions"] as? [[String:Any]])!.count
                     for q in (quizJson["questions"] as? [[String:Any]])!{
+                        let answer = q["answer"] as? String
+                        let ans = Int(answer!)! - 1
+                        let answers = q["answers"] as? [String]
+                        self.appdata.correctAns.append((answers![ans] as? String)!)
                         self.appdata.movQuestions.append(q["text"] as! String)
                         self.appdata.movAnswers += q["answers"] as! [String]
                     }
@@ -90,6 +102,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.appdata.redAnswers = []
                     let quizJson = value[1]
                     for q in (quizJson["questions"] as? [[String:Any]])!{
+                        let answer = q["answer"] as? String
+                        let ans = Int(answer!)! - 1
+                        let answers = q["answers"] as? [String]
+                        self.appdata.correctAns.append((answers![ans] as? String)!)
                         self.appdata.redQuestions.append(q["text"] as! String)
                         self.appdata.redAnswers += q["answers"] as! [String]
                     }
@@ -99,15 +115,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let quizJson = value[2]
                     for q in (quizJson["questions"] as? [[String:Any]])!{
                         let answer = q["answer"] as? String
-                        let ans = Int(answer!) as? Int
+                        let ans = Int(answer!)! - 1
                         let answers = q["answers"] as? [String]
+                        self.appdata.correctAns.append((answers![ans] as? String)!)
                         self.appdata.vidQuestions.append(q["text"] as! String)
                         self.appdata.vidAnswers += q["answers"] as! [String]
-                        self.appdata.correctAns.append((answers![ans!] as? String)!)
                     }
                 }
             }
             print("done!")
+            print(self.appdata.correctAns)
             self.doTableRefresh()
         }
     }

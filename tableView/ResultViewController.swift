@@ -35,12 +35,12 @@ class ResultViewController: UIViewController {
     }
     
     func setupResults() {
-        if appdata.numCorrect == 2 {
+        if appdata.numCorrect == appdata.quizLength {
             lblResult.text = "Congratulations! 100%!!"
         } else {
             lblResult.text = "Awh, good try, better luck next time!"
         }
-        lblScore.text = "\(appdata.numCorrect) of 2 correct!"
+        lblScore.text = "\(appdata.numCorrect) of \(appdata.quizLength) correct!"
     }
     
     /*
