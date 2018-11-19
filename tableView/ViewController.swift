@@ -46,10 +46,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
 
     @IBAction func btnSettings(_ sender: UIBarButtonItem) {
-        let uiAlert = UIAlertController(title: "Check back for settings!", message: "", preferredStyle: .alert)
-        uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+        let uiAlert = UIAlertController(title: "Settings", message: "", preferredStyle: .alert)
+        uiAlert.addAction(UIAlertAction(title: "Check Now", style: .default, handler: { (action: UIAlertAction!) in
             uiAlert .dismiss(animated: true, completion: nil)
+            if let alertTextField = uiAlert.textFields?.first, alertTextField.text != nil {
+                self.appdata.baseURL = alertTextField.text!
+            }
+            self.fetchData()
         }))
+        uiAlert.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = "https://tednewardsandbox.site44.com/questions.json"
+        })
+        uiAlert.addAction(UIAlertAction(title: "Cancel",
+                                   style: UIAlertAction.Style.cancel,
+                                   handler: nil))
         self.present(uiAlert, animated: true, completion: nil)
     }
     
@@ -68,64 +78,78 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func fetchData() {
-        let baseURL = "https://tednewardsandbox.site44.com/questions.json"
-        Alamofire.request(baseURL).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Error while fetching")
-                return
-            }
-            //print(response)
-            guard let value = response.result.value as? [[String:Any]] else {
-                print("Malformed data received from fetchAllRooms service")
-                return
-            }
-            print(value)
-            self.appdata.correctAns = []
-            for quiz in 0...2 {
-                self.appdata.categories[quiz] = value[quiz]["title"] as! String
-                self.appdata.descriptions[quiz] = value[quiz]["desc"] as! String
-                if quiz == 0 {
-                    self.appdata.movQuestions = []
-                    self.appdata.movAnswers = []
-                    let quizJson = value[0]
-                    self.appdata.quizLength = (quizJson["questions"] as? [[String:Any]])!.count
-                    for q in (quizJson["questions"] as? [[String:Any]])!{
-                        let answer = q["answer"] as? String
-                        let ans = Int(answer!)! - 1
-                        let answers = q["answers"] as? [String]
-                        self.appdata.correctAns.append((answers![ans] as? String)!)
-                        self.appdata.movQuestions.append(q["text"] as! String)
-                        self.appdata.movAnswers += q["answers"] as! [String]
-                    }
-                } else if quiz == 1 {
-                    self.appdata.redQuestions = []
-                    self.appdata.redAnswers = []
-                    let quizJson = value[1]
-                    for q in (quizJson["questions"] as? [[String:Any]])!{
-                        let answer = q["answer"] as? String
-                        let ans = Int(answer!)! - 1
-                        let answers = q["answers"] as? [String]
-                        self.appdata.correctAns.append((answers![ans] as? String)!)
-                        self.appdata.redQuestions.append(q["text"] as! String)
-                        self.appdata.redAnswers += q["answers"] as! [String]
-                    }
-                } else if quiz == 2 {
-                    self.appdata.vidQuestions = []
-                    self.appdata.vidAnswers = []
-                    let quizJson = value[2]
-                    for q in (quizJson["questions"] as? [[String:Any]])!{
-                        let answer = q["answer"] as? String
-                        let ans = Int(answer!)! - 1
-                        let answers = q["answers"] as? [String]
-                        self.appdata.correctAns.append((answers![ans] as? String)!)
-                        self.appdata.vidQuestions.append(q["text"] as! String)
-                        self.appdata.vidAnswers += q["answers"] as! [String]
+        if NetworkReachabilityManager()!.isReachable {
+            let baseURL = appdata.baseURL
+            Alamofire.request(baseURL).responseJSON { response in
+                guard response.result.isSuccess else {
+                    let uiAlert = UIAlertController(title: "Unable to retrieve data!", message: "", preferredStyle: .alert)
+                    uiAlert.addAction(UIAlertAction(title: "Cancel",
+                                                    style: UIAlertAction.Style.cancel,
+                                                    handler: nil))
+                    self.present(uiAlert, animated: true, completion: nil)
+                    return
+                }
+                //print(response)
+                guard let value = response.result.value as? [[String:Any]] else {
+                    let uiAlert = UIAlertController(title: "Unable to retrieve data!", message: "", preferredStyle: .alert)
+                    uiAlert.addAction(UIAlertAction(title: "Cancel",
+                                                    style: UIAlertAction.Style.cancel,
+                                                    handler: nil))
+                    self.present(uiAlert, animated: true, completion: nil)
+                    return
+                }
+                print(value)
+                self.appdata.correctAns = []
+                for quiz in 0...2 {
+                    self.appdata.categories[quiz] = value[quiz]["title"] as! String
+                    self.appdata.descriptions[quiz] = value[quiz]["desc"] as! String
+                    if quiz == 0 {
+                        self.appdata.movQuestions = []
+                        self.appdata.movAnswers = []
+                        let quizJson = value[0]
+                        self.appdata.quizLength = (quizJson["questions"] as? [[String:Any]])!.count
+                        for q in (quizJson["questions"] as? [[String:Any]])!{
+                            let answer = q["answer"] as? String
+                            let ans = Int(answer!)! - 1
+                            let answers = q["answers"] as? [String]
+                            self.appdata.correctAns.append((answers![ans] as? String)!)
+                            self.appdata.movQuestions.append(q["text"] as! String)
+                            self.appdata.movAnswers += q["answers"] as! [String]
+                        }
+                    } else if quiz == 1 {
+                        self.appdata.redQuestions = []
+                        self.appdata.redAnswers = []
+                        let quizJson = value[1]
+                        for q in (quizJson["questions"] as? [[String:Any]])!{
+                            let answer = q["answer"] as? String
+                            let ans = Int(answer!)! - 1
+                            let answers = q["answers"] as? [String]
+                            self.appdata.correctAns.append((answers![ans] as? String)!)
+                            self.appdata.redQuestions.append(q["text"] as! String)
+                            self.appdata.redAnswers += q["answers"] as! [String]
+                        }
+                    } else if quiz == 2 {
+                        self.appdata.vidQuestions = []
+                        self.appdata.vidAnswers = []
+                        let quizJson = value[2]
+                        for q in (quizJson["questions"] as? [[String:Any]])!{
+                            let answer = q["answer"] as? String
+                            let ans = Int(answer!)! - 1
+                            let answers = q["answers"] as? [String]
+                            self.appdata.correctAns.append((answers![ans] as? String)!)
+                            self.appdata.vidQuestions.append(q["text"] as! String)
+                            self.appdata.vidAnswers += q["answers"] as! [String]
+                        }
                     }
                 }
+                self.doTableRefresh()
             }
-            print("done!")
-            print(self.appdata.correctAns)
-            self.doTableRefresh()
+        } else {
+            let uiAlert = UIAlertController(title: "No Internet Connection!", message: "", preferredStyle: .alert)
+            uiAlert.addAction(UIAlertAction(title: "Close",
+                                            style: UIAlertAction.Style.cancel,
+                                            handler: nil))
+            self.present(uiAlert, animated: true, completion: nil)
         }
     }
     

@@ -16,6 +16,7 @@ class AppData: NSObject {
     open var topicIdx = 0
     open var questionIdx = 0
     open var chooseAns = ""
+    open var baseURL = "https://tednewardsandbox.site44.com/questions.json"
     open var correctAns = ["Snow White and the Seven Dwarfs","Avatar","The front page of the internet","r/AskReddit","CrossFire","Pokemon"]
     open var numCorrect = 0
     open var prevCorrect = false
