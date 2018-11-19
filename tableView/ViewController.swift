@@ -44,6 +44,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private let refreshControl = UIRefreshControl()
 
     @IBAction func btnSettings(_ sender: UIBarButtonItem) {
         let uiAlert = UIAlertController(title: "Settings", message: "", preferredStyle: .alert)
@@ -70,6 +72,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.doTableRefresh()
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData()
+        self.refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
