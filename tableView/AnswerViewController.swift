@@ -30,7 +30,7 @@ class AnswerViewController: UIViewController {
     }
     
     @IBAction func btnMoveOn(_ sender: Any) {
-        if appdata.questionIdx == 2 {
+        if appdata.questionIdx == appdata.quizLength {
             self.performSegue(withIdentifier: "done", sender: self)
         } else {
             self.performSegue(withIdentifier: "anotherQuestion", sender: self)

@@ -12,6 +12,7 @@ class AppData: NSObject {
     static let shared = AppData()
     
     // create arrays or information
+    open var quizLength = 2
     open var topicIdx = 0
     open var questionIdx = 0
     open var chooseAns = ""

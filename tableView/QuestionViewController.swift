@@ -46,6 +46,7 @@ class QuestionViewController: UIViewController {
     func newQuestion() {
         switch appdata.topicIdx {
         case 0:
+            print(appdata.questionIdx)
             lblQuestion.text = appdata.movQuestions[appdata.questionIdx]
             btn1.setTitle(appdata.movAnswers[0 + 4 * appdata.questionIdx], for: .normal)
             btn2.setTitle(appdata.movAnswers[1 + 4 * appdata.questionIdx], for: .normal)

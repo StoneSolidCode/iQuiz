@@ -52,8 +52,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        fetchData()
+        self.doTableRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,37 +62,61 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func fetchData() {
         let baseURL = "https://tednewardsandbox.site44.com/questions.json"
-        NSLog("test")
         Alamofire.request(baseURL).responseJSON { response in
-            if let resp = response.result.value {
-                
-                //print(json["title"])
-                let dictionary = resp as? NSDictionary
-//                let json = try JSONSerialization.jsonObject(with: resp!, options:.allowFragments)
-//                print(dictionary!)
-                guard let main = dictionary?["main"] as? NSDictionary else {
-                    print("Couldn't find main")
-                    return
-                }
-                for quiz in 0...2 {
-                    self.appdata.categories[quiz] = main["title"] as! String
-                    NSLog(main["title"] as! String)
-                    self.appdata.descriptions[quiz] = main["desc"] as! String
-                }
-                self.doTableRefresh()
+            guard response.result.isSuccess else {
+                print("Error while fetching")
+                return
             }
-            
+            //print(response)
+            guard let value = response.result.value as? [[String:Any]] else {
+                print("Malformed data received from fetchAllRooms service")
+                return
+            }
+            print(value)
+            for quiz in 0...2 {
+                self.appdata.categories[quiz] = value[quiz]["title"] as! String
+                self.appdata.descriptions[quiz] = value[quiz]["desc"] as! String
+                if quiz == 0 {
+                    self.appdata.movQuestions = []
+                    self.appdata.movAnswers = []
+                    let quizJson = value[0]
+                    self.appdata.quizLength = (quizJson["questions"] as? [[String:Any]])!.count
+                    for q in (quizJson["questions"] as? [[String:Any]])!{
+                        self.appdata.movQuestions.append(q["text"] as! String)
+                        self.appdata.movAnswers += q["answers"] as! [String]
+                    }
+                } else if quiz == 1 {
+                    self.appdata.redQuestions = []
+                    self.appdata.redAnswers = []
+                    let quizJson = value[1]
+                    for q in (quizJson["questions"] as? [[String:Any]])!{
+                        self.appdata.redQuestions.append(q["text"] as! String)
+                        self.appdata.redAnswers += q["answers"] as! [String]
+                    }
+                } else if quiz == 2 {
+                    self.appdata.vidQuestions = []
+                    self.appdata.vidAnswers = []
+                    let quizJson = value[2]
+                    for q in (quizJson["questions"] as? [[String:Any]])!{
+                        let answer = q["answer"] as? String
+                        let ans = Int(answer!) as? Int
+                        let answers = q["answers"] as? [String]
+                        self.appdata.vidQuestions.append(q["text"] as! String)
+                        self.appdata.vidAnswers += q["answers"] as! [String]
+                        self.appdata.correctAns.append((answers![ans!] as? String)!)
+                    }
+                }
+            }
+            print("done!")
+            self.doTableRefresh()
         }
     }
+    
     func doTableRefresh() {
         DispatchQueue.main.async(execute: { () -> Void in
             self.tableView.reloadData()
             return
         })
     }
-    
-    
-    
-    
 }
 
